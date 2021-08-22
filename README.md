@@ -1,1 +1,2 @@
-# com.cucumbery
+# cucumbery.com
+#### Cucumbery plugin website
