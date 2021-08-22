@@ -1,10 +1,10 @@
 /**
  * log.js
  * 
- * (c) 2020-2021 Wnynya
+ * (c) 2020-2021 Wany
  *
  * @summary logger / log
- * @author Wnynya <wnynya@gmail.com>
+ * @author Wany <sung@wany.io>
  */
 
 const fs = require('fs');

@@ -1,10 +1,10 @@
 /**
  * accounts.js
  * 
- * (c) 2020-2021 Wnynya
+ * (c) 2020-2021 Wany
  * 
  * @summary account login / logout / modify
- * @author Wany <wnynya@gmail.com>
+ * @author Wany <sung@wany.io>
  */
 
  const database = require('./database.js');

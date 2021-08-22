@@ -1,11 +1,11 @@
 /**
  * builds.js
  * 
- * (c) 2020-2021 Wnynya
+ * (c) 2020-2021 Wany
  * 
  * @summary plugin builds
- * @author Wany <wnynya@gmail.com>
- */
+ * @author Wany <sung@wany.io>
+*/
 
 const database = require('./database.js');
 const time = require('./time.js');

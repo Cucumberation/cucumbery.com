@@ -1,10 +1,10 @@
 /**
  * time.js
  * 
- * (c) 2020 Wnynya
+ * (c) 2020 Wany
  * 
  * @summary time format / calc module
- * @author Wany <wnynya@gmail.com>
+ * @author Wany <sung@wany.io>
  */
 
  const time = (format, dt) => {

@@ -1,15 +1,18 @@
 /**
  * log.js
  * 
- * (c) 2020 Wnynya
+ * (c) 2020-2021 Wany
  *
  * @summary logger / log
- * @author Wnynya <wnynya@gmail.com>
- */
+ * @author Wany <sung@wany.io>
+*/
+
+const config = require('../config.json');
 
 const fs = require('fs');
 const time = require('./time');
 const knownHosts = require('./known-hosts.json');
+const knownReferers = require('./known-referers.json');
 
 class Logger {
 
@@ -19,25 +22,32 @@ class Logger {
     this.color = data.color;
     this.dir = data.dir;
     this.type = data.type;
+    this.channel = data.channel;
   }
 
-  log (data) {
-    let msg = data.msg;
+  log (message, type, silent) {
 
-    if (!data.silent) {
-      let consoleMsg = "\x1b[0m\x1b[90m[\x1b[0m" + this.color + this.title + "\x1b[0m ";
-      consoleMsg += time.stamp("log") + "\x1b[0m\x1b[90m]\x1b[0m: ";
-      consoleMsg += this.type[data.type].console;
-      if (msg.stack) { consoleMsg += msg.stack + "\x1b[0m"; } else { consoleMsg += msg + "\x1b[0m"; }
-      console.log(consoleMsg);
+    if (!silent) {
+      let consoleMessage = "\x1b[0m\x1b[90m[\x1b[0m" + this.color + this.title + "\x1b[0m ";
+      consoleMessage += time.stamp("log") + "\x1b[0m\x1b[90m]\x1b[0m: ";
+      consoleMessage += this.type[type].console;
+      if (message.stack) { 
+        consoleMessage += message.stack + "\x1b[0m"; 
+      } 
+      else { 
+        consoleMessage += message + "\x1b[0m"; 
+      }
+      console.log(consoleMessage);
     }
 
     if (typeof msg == "string") {
       msg = msg.replace(/\x1b\[(.*)m/gi, "");
     }
 
-    let filename = "log-" + time.datetime("YYYYMMDD") + "-" + this.source;
-    if (data.type == "error") { filename += "-error" }
+    let filename = this.channel + "-" + time.datetime("YYYYMMDD") + "-" + this.source;
+    if (type == "error") { 
+      filename += "-error" 
+    }
     filename += ".log";
 
     let dir = this.dir + "/" + time.datetime("YYYYMM");
@@ -48,19 +58,26 @@ class Logger {
 
     let file = dir + "/" + filename;
 
-    let logMsg = "[" + this.title + "]" + this.type[data.type].text + time.stamp("logm");
-    if (msg.stack) { logMsg += msg.stack; } else { logMsg += msg; }
-    logMsg += "\r\n";
-    fs.appendFileSync(file, logMsg);
+    let logMessage = "[" + this.title + "]" + this.type[type].text + time.stamp("logm");
+    if (message.stack) { 
+      logMessage += message.stack; 
+    } 
+    else { 
+      logMessage += message; 
+    }
+    logMessage += "\r\n";
+    fs.appendFileSync(file, logMessage);
+
   }
 
 }
 
 const logger = new Logger({
-  source: "cucumbery",
-  title: "CUMB",
-  color: "\u001B[38;2;82;238;82m",
-  dir: "/root/cucumbery-data/logs",
+  channel: "log",
+  source: config.logger.source,
+  title: config.logger.title,
+  color: "\u001B[38;2;" + config.logger.color.red + ";" + config.logger.color.green + ";" + config.logger.color.blue + "m",
+  dir: config.path + "/data/logs",
   type: {
     info: {
       console: "",
@@ -75,24 +92,51 @@ const logger = new Logger({
       text: "[EROR]"
     },
     debug: {
-      console: "\u001B[45m\u001B[30m[DEBUG]\u001B[0m\u001B[91m ",
+      console: "\u001B[45m\u001B[30m[DEBUG]\u001B[0m\u001B[95m ",
       text: "[DEBG]"
     }
   }
 });
 
-exports.info = (msg) => { logger.log({ type: "info", msg: msg }); }
-exports.warn = (msg) => { logger.log({ type: "warn", msg: msg }); }
-exports.error = (msg) => { logger.log({ type: "error", msg: msg }); }
-exports.debug = (msg) => { logger.log({ type: "debug", msg: msg }); }
+exports.info = (message) => { logger.log(message, "info", false); }
+exports.warn = (message) => { logger.log(message, "warn", false); }
+exports.error = (message) => { logger.log(message, "error", false); }
+exports.debug = (message) => { logger.log(message, "debug", false); }
 
-exports.only = (msg) => { logger.log({ type: "info", msg: msg, silent: true }); }
-exports.onlyWarn = (msg) => { logger.log({ type: "warn", msg: msg, silent: true }); }
-exports.onlyError = (msg) => { logger.log({ type: "error", msg: msg, silent: true }); }
-exports.onlyDebug = (msg) => { logger.log({ type: "debug", msg: msg, silent: true }); }
+exports.only = (message) => { logger.log(message, "info", true); }
+exports.onlyWarn = (message) => { logger.log(message, "warn", true); }
+exports.onlyError = (message) => { logger.log(message, "error", true); }
+exports.onlyDebug = (message) => { logger.log(message, "debug", true); }
+
+const reqLogger = new Logger({
+  channel: "req",
+  source: config.logger.source,
+  title: config.logger.title,
+  color: "\u001B[38;2;" + config.logger.color.red + ";" + config.logger.color.green + ";" + config.logger.color.blue + "m",
+  dir: config.path + "/data/logs",
+  type: {
+    info: {
+      console: "",
+      text: "[INFO]"
+    },
+    warn: {
+      console: "\u001B[43m\u001B[30m[WARN]\u001B[0m\u001B[93m ",
+      text: "[WARN]"
+    },
+    error: {
+      console: "\u001B[41m\u001B[30m[ERROR]\u001B[0m\u001B[91m ",
+      text: "[EROR]"
+    },
+    debug: {
+      console: "\u001B[45m\u001B[30m[DEBUG]\u001B[0m\u001B[95m ",
+      text: "[DEBG]"
+    }
+  }
+});
 
 const ignores = [
-  "10.0.0.1"
+  "10.0.0.1",
+  "175.200.72.75"
 ];
 
 function getClientNavigator(ua) {
@@ -100,9 +144,9 @@ function getClientNavigator(ua) {
   var browser;
   var system;
 
-  if (!ua) {
+  if(!ua) {
     system = "Unknown";
-    browser = "Unknown";
+    browser = "Unknown";  
   }
   else {
     if (ua.indexOf("Windows") > -1) {
@@ -150,46 +194,46 @@ function getClientNavigator(ua) {
     else {
       system = "Unknown";
     }
-
+  
     if (ua.indexOf("Firefox") > -1) {
       browser = "Firefox";
-    }
+    } 
     else if (ua.toLowerCase().indexOf("bot") > -1) {
       browser = "Bot";
-    }
+    } 
     else if (ua.indexOf("Steam") > -1) {
       browser = "Steam";
-    }
+    } 
     else if (ua.indexOf("Instagram") > -1) {
       browser = "Instagram";
-    }
+    } 
     else if (ua.indexOf("KAKAOTALK") > -1 || ua.indexOf("kakaotalk-scrap") > -1) {
       browser = "Kakaotalk";
-    }
+    } 
     else if (ua.indexOf("NAVER(inapp") > -1) {
       browser = "Naver App";
-    }
+    } 
     else if (ua.indexOf("SamsungBrowser") > -1) {
       browser = "Samsung Internet";
-    }
+    } 
     else if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) {
       browser = "Opera";
-    }
+    } 
     else if (ua.indexOf("Trident") > -1) {
       browser = "IE";
-    }
+    } 
     else if (ua.indexOf("Edg") > -1) {
       browser = "Edge";
-    }
+    } 
     else if (ua.indexOf("Whale") > -1) {
       browser = "Whale";
-    }
+    } 
     else if (ua.indexOf("Chrome") > -1) {
       browser = "Chrome";
-    }
+    } 
     else if (ua.indexOf("Safari") > -1) {
       browser = "Safari";
-    }
+    } 
     else {
       browser = "Unknown";
     }
@@ -212,12 +256,16 @@ exports.req = (req) => {
   var ips = "";
   let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   if (ip.substr(0, 7) == "::ffff:") { ip = ip.substr(7); }
-  if (ignores.includes(ip)) {
-    return;
+  if (ignores.includes(ip)) { 
+    return; 
   }
   ips = ip;
-  if (knownHosts.hasOwnProperty(ip)) {
-    ips = knownHosts[ip] + " (" + ips + ")";
+  /*var geoipData = geoip.query(ip);
+  if (geoipData && geoipData.country) {
+    ips = ips + "/" + (geoipData.country + "").toUpperCase();
+  }*/
+  if (knownHosts.hasOwnProperty(ip)) { 
+    ips = knownHosts[ip] + " (" + ips + ")"; 
   }
 
   // protocol
@@ -233,24 +281,26 @@ exports.req = (req) => {
 
   message += ips + ' => ' + protocol + ' ' + method + ' ' + path;
 
+  // client Data
   var clientData = new Object();
 
   var referer = req.header('Referer');
   if (!referer) {
-    clientData.referer = "Direct"
-  }
-  else if (referer && referer.startsWith("https://cucumbery.com" || "http://cucumbery.com")) {
-    clientData.referer = "Cucumbery"
+    clientData.referer = "Direct";
   }
   else {
-    clientData.referer = referer;
+    for (var key in knownReferers) {
+      if (referer.startsWith(key)) {
+        clientData.referer = knownReferers[key] + " (" + referer + ")";
+        break;
+      }
+    }
+    if (!clientData.referer) {
+      clientData.referer = referer;
+    }
   }
 
-  var ignoredAgent = ["Cucumbery", "Updater", "UpdaterBot"];
   var agent = req.headers['user-agent'];
-  if (ignoredAgent.includes(agent)) {
-    return;
-  }
   var acd = getClientNavigator(agent);
 
   clientData.system = acd.system;
@@ -276,10 +326,7 @@ exports.req = (req) => {
   } catch (error) { }
 
   message += " => " + JSON.stringify(clientData);
+  message += " " + documentType;
 
-  logger.log({
-    type: "info",
-    msg: message,
-    silent: true
-  });
+  reqLogger.log(message, "info", true);
 }

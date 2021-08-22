@@ -1,10 +1,10 @@
 /**
  * request.js
  * 
- * (c) 2020-2021 Wnynya
+ * (c) 2020-2021 Wany
  * 
  * @summary some request classes
- * @author Wany <wnynya@gmail.com>
+ * @author Wany <sung@wany.io>
 */
 
 class Request extends EventClass {

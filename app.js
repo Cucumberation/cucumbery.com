@@ -1,10 +1,10 @@
 /**
  * cucumbery-web
  * 
- * (c) 2021 Wnynya
+ * (c) 2021 Wany
  * 
  * @summary cucumbery plugin website
- * @author Wany <wnynya@gmail.com>
+ * @author Wany <sung@wany.io>
 */
 
 const express = require('express');
