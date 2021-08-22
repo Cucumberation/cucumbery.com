@@ -1,0 +1,54 @@
+doctype html
+html(lang="ko")
+
+  head
+    include /views/master/head
+    meta(name='description' content="Cucumbery")
+    meta(name='author' content="jho5245")
+    link(rel="canonical" href="https://cucumbery.com/builds")
+    link(rel='stylesheet' href='https://cucumbery.com/resource/builds/root.css' type='text/css')
+    title Cucumbery Builds
+
+  body
+      
+    header
+      .outwrapper 
+        .inwrapper
+          a.title(href="https://cucumbery.com/builds")
+            span.text Cucumbery Builds
+            span
+              img(src="/resource/icon/cucumbery-256.png")
+
+    section#latest
+      .outwrapper 
+        .inwrapper
+          .buildinfo.release
+            .info
+              .desc 
+                span latest release build
+                span ·
+                span.api ...
+                span ·
+                span.ago ...
+            .file
+              .filename ...
+              a.download download
+          .buildinfo.dev
+            .info
+              .desc 
+                span latest dev build
+                span ·
+                span.api ...
+                span ·
+                span.ago ...
+            .file
+              .filename ...
+              a.download download
+
+    footer 
+      .outwrapper 
+        .inwrapper
+          p Cucumbery
+
+    include /views/master/scripts
+    script(src='https://cucumbery.com/resource/builds/root.js')

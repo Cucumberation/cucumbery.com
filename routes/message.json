@@ -1,0 +1,23 @@
+{
+  "default200": "OK",
+  "pong200": "pong!",
+  "default201": "Created",
+  "default202": "Accepted",
+  "default204": "No Content",
+  "default205": "Reset Content",
+  "default400": "Bad Request",
+  "default401": "Unauthorized",
+  "auth401": "Failed to authenticate with server",
+  "default403": "Forbidden",
+  "auth403": "Failed to authenticate with server",
+  "permission403": "You do not have permission to access",
+  "default404": "Not Found",
+  "account404": "Account not found",
+  "article404": "Article not found",
+  "file404": "File not found",
+  "build404": "Build not found",
+  "server404": "Server not found",
+  "default405": "Method Not Allowed",
+  "default409": "Conflict",
+  "default500": "Internal Server Error"
+}

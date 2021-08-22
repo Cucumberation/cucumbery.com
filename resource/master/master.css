@@ -1,0 +1,233 @@
+
+@import url('https://wany.io/resource/font/dm-mono/DM-Mono.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+
+:root {
+  --bg: black;
+  --fg: white;
+  --th: #52EE52;
+
+  --white: rgb(0,0,0);
+  --gray-250: rgb(20,20,20);
+  --gray-245: rgb(25,25,25);
+  --gray-240: rgb(30,30,30);
+  --gray-235: rgb(35,35,35);
+  --gray-230: rgb(40,40,40);
+  --gray-210: rgb(60,60,60);
+  --gray-180: rgb(90,90,90);
+  --gray-150: rgb(120,120,120);
+  --gray-130: rgb(140,140,140);
+  --gray-128: rgb(128,128,128);
+  --gray-100: rgb(170,170,170);
+  --gray-80: rgb(190,190,190);
+  --gray-50: rgb(220,220,220);
+  --gray-40: rgb(230,230,230);
+  --gray-20: rgb(250,250,250);
+  --black: rgb(255,255,255);
+
+  --yellow: rgb(255,204,0);
+  --orange: rgb(255,149,0);
+  --red: rgb(255,59,48);
+  --pink: rgb(255,45,85);
+  --purple: rgb(175,82,222);
+  --indigo: rgb(88,86,214);
+  --blue: rgb(0,122,255);
+  --teal: rgb(90,200,255);
+  --green: rgb(52,199,89);
+}
+html, body {
+  font-family: 'DM Mono', 'Consolas', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  scrollbar-width: 15px;
+  scrollbar-color: var(--fg) var(--bg);
+}
+body {
+  overflow-y: auto;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+h1, h2, h3, h4, h5, h6, 
+p, a, i, b, s, span, 
+img, input, textarea, 
+table, tr, td {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  border-spacing: 0px;
+  color: var(--fg);
+}
+a {
+  text-decoration: none;
+  color: var(--fg);
+}
+img {
+  display: block;
+}
+svg {
+  fill: var(--fg);
+  stroke: var(--fg);
+  overflow: visible;
+}
+svg path, svg rect, svg circle, svg ellipse {
+  fill: var(--fg);
+  stroke: var(--fg);
+} 
+textarea, input {
+  -webkit-appearance: none;
+}
+textarea:focus, input:focus {
+  outline: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  box-shadow: 0 0 0px 1000px var(--bg) inset;
+  font-family: 'DM Mono', 'Consolas', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  -webkit-text-fill-color: var(--fg);
+}
+::selection {
+  background: var(--th);
+  color: black;
+}
+::-moz-selection {
+  background: var(--th);
+  color: black;
+}
+
+/* wrapper */
+.outwrapper {
+  width: calc(100% - 180px);
+  padding: 0px 90px 0px 90px;
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: 
+    width 0.2s ease-out, 
+    padding 0.2s ease-out, 
+    max-width 0.2s ease-out;
+}
+.outwrapper.wide {
+  max-width: unset;
+}
+.outwrapper.narrow {
+  max-width: 540px;
+}
+@media (max-width:900px) {
+  .outwrapper {
+    width: 100%;
+    max-width: calc(100% - 120px);
+    padding: 0px 60px 0px 60px;
+  }
+  .outwrapper.wide {
+    max-width: calc(100% - 60px);
+    padding: 0px 30px 0px 30px;
+  }
+  .outwrapper.narrow {
+    max-width: 540px;
+    padding: 0px 30px 0px 30px;
+  }
+}
+@media (max-width:600px) {
+  .outwrapper {
+    max-width: calc(100% - 30px);
+    padding: 0px 15px 0px 15px;
+  }
+  .outwrapper.wide {
+    max-width: calc(100% - 30px);
+    padding: 0px 15px 0px 15px;
+  }
+  .outwrapper.narrow {
+    max-width: calc(100% - 30px);
+    padding: 0px 15px 0px 15px;
+  }
+}
+.inwrapper {
+  width: 100%;
+}
+
+/* floatmessage */
+.floatmessage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100000000;
+  display: flex;
+  justify-content: center;
+} 
+.floatmessage .wrapper {
+  max-width: 480px;
+  padding: 15px 30px 15px 30px;
+  border-radius: 15px;
+  transform: scale(0.75);
+  position: absolute;
+  top: -90px;
+  font-family: 'Consolas', 'Noto Sans KR', 'Malgun Gothic', monospace;
+  font-size: 14pt;
+  font-weight: 400;
+  text-align: center;
+  box-shadow: 0px 0px 10px 0px rgb(0,0,0,0.1);
+  transition: top 0.2s cubic-bezier(0,0,.3,1.3), transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  background-color: white;
+  color: black;
+}
+.floatmessage.warn .wrapper {
+  background-color: var(--yellow);
+  color: black;
+}
+.floatmessage.error .wrapper {
+  background-color: var(--red);
+  color: white;
+}
+.floatmessage.down .wrapper{
+  transform: scale(1.0);
+  top: 10vh;
+  box-shadow: 0px 0px 30px 0px rgb(0,0,0,0.1);
+}
+@media (max-width:600px) {
+  .floatmessage .wrapper {
+    width: calc(100% - 60px);
+    padding: 15px 15px 15px 15px;
+    font-size: 12pt;
+  }
+  .floatmessage.down .wrapper{
+    transform: scale(1.0);
+    top: 60px;
+  }
+}
+
+.fth {
+  color: var(--th);
+}
+.bth {
+  background-color: var(--th);
+}
+
+.none {
+  display: none !important;
+}
+.opa0 {
+  opacity: 0 !important;
+}
+.btn {
+  cursor: pointer;
+}
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
