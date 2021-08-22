@@ -1,5 +1,4 @@
 /node_modules
-/data/logs
-/data/cucumbery/builds
+/data
+/config.json
 /public/temp
-config.json
