@@ -66,7 +66,7 @@
  
        let query = "SELECT * FROM " + table + " WHERE id = \'" + encode(this.id) + "\'";
  
-       database.query(query).then((res) => {
+       database.query(query).then(res => {
          if (res.length == 0) {
            reject(null);
          }
@@ -105,7 +105,7 @@
        query += "phone = '" + trim(encode(this.phone)) + "' ";
        query += "WHERE id = \'" + encode(this.id) + "\'";
  
-       database.query(query).then((res) => {
+       database.query(query).then(res => {
          return resolve();
        }).catch(error => {
          return reject(error);
@@ -123,8 +123,8 @@
    insert(key) {
      return new Promise((resolve, reject) => {
  
-       getHash("sha512", this.id, new Date() + "").then((keysalt) => {
-         getHash("sha512", key, keysalt).then((keyhash) => {
+       getHash("sha512", this.id, new Date() + "").then(keysalt => {
+         getHash("sha512", key, keysalt).then(keyhash => {
  
            let query = "INSERT INTO " + table + " (id, keyhash, keysalt, name, registerdate) VALUES (";
            query += "'" + encode(this.id) + "', ";
@@ -156,13 +156,13 @@
  
        let query = "SELECT keyhash FROM " + table + " WHERE id = \'" + encode(this.id) + "\'";
  
-       database.query(query).then((res) => {
+       database.query(query).then(res => {
          if (res.length == 0) {
            reject(null);
          }
          var keyhash = res[0].keyhash;
  
-         this.crypt(key).then((hash) => {
+         this.crypt(key).then(hash => {
            if (hash === keyhash) {
              resolve();
            }
@@ -193,13 +193,13 @@
  
          let query = "SELECT keysalt FROM " + table + " WHERE id = \'" + encode(this.id) + "\'";
  
-         database.query(query).then((res) => {
+         database.query(query).then(res => {
            if (res.length == 0) {
              reject(null);
            }
            var salt = res[0].keysalt;
  
-           getHash(key, salt).then((hash) => {
+           getHash(key, salt).then(hash => {
              resolve(hash);
            });
  
@@ -219,7 +219,7 @@
        query += "keyhash = '" + hash + "' ";
        query += "WHERE id = \'" + encode(this.id) + "\'";
  
-       database.query(query).then((res) => {
+       database.query(query).then(res => {
          return resolve();
        }).catch(error => {
          return reject(error);
@@ -233,7 +233,7 @@
  
        let query = "SELECT sessions FROM " + table + " WHERE id = \'" + encode(this.id) + "\'";
  
-       database.query(query).then((res) => {
+       database.query(query).then(res => {
          if (res.length == 0) {
            reject({});
          }
@@ -249,7 +249,7 @@
          for (var s of sessions) {
            getSessions.push(getSession(wanyneServer.sessionStore, s.id));
          }
-         Promise.all(getSessions).then((sessionDatas) => {
+         Promise.all(getSessions).then(sessionDatas => {
            for (var i = 0; i < sessionDatas.length; i++) {
              var session = new Session(sessions[i].id, sessionDatas[i], sessions[i].clientData);
              this.sessions.push(session);
@@ -272,7 +272,7 @@
        query += "sessions = '" + JSON.stringify(this.sessions) + "' ";
        query += "WHERE id = \'" + encode(this.id) + "\'";
  
-       database.query(query).then((res) => {
+       database.query(query).then(res => {
          return resolve();
        }).catch(error => {
          return reject(error);
@@ -312,7 +312,7 @@
      return new Promise((resolve, reject) => {
        var query = "DELETE FROM sessions WHERE session_id = '" + encode(sessionID) + "';";
  
-       database.query(query).then((data) => {
+       database.query(query).then(data => {
          var l = this.sessions.length;
          for (var i = 0; i < l; i++) {
            if (this.sessions[i].id = sessionID) {
@@ -340,7 +340,7 @@
        }
        query += "'');";
  
-       database.query(query).then((data) => {
+       database.query(query).then(data => {
          this.sessions = [];
          resolve();
        }).catch((error) => {
@@ -410,7 +410,7 @@
      }
      query += "ORDER BY registerdate ASC LIMIT " + size + " OFFSET " + ((page - 1) * size) + ";";
  
-     database.query(query).then((res) => {
+     database.query(query).then(res => {
  
        if (!count) {
          var accounts = new Array();

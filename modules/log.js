@@ -134,11 +134,6 @@ const reqLogger = new Logger({
   }
 });
 
-const ignores = [
-  "10.0.0.1",
-  "175.200.72.75"
-];
-
 function getClientNavigator(ua) {
 
   var browser;
@@ -248,6 +243,9 @@ function getClientNavigator(ua) {
 
 }
 
+const ignoreHosts = config.logger["ignore-hosts"];
+const ignoreAgents = config.logger["ignore-agents"];
+
 exports.req = (req) => {
 
   var message = "";
@@ -256,7 +254,7 @@ exports.req = (req) => {
   var ips = "";
   let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   if (ip.substr(0, 7) == "::ffff:") { ip = ip.substr(7); }
-  if (ignores.includes(ip)) { 
+  if (ignoreHosts.includes(ip)) { 
     return; 
   }
   ips = ip;
@@ -301,11 +299,17 @@ exports.req = (req) => {
   }
 
   var agent = req.headers['user-agent'];
+
+  if (ignoreAgents.includes(agent)) {
+    return;
+  }
+  
   var acd = getClientNavigator(agent);
 
   clientData.system = acd.system;
   clientData.browser = acd.browser;
   clientData.agent = agent;
+  
 
   if (req.session && req.session.account && req.session.account.login == true) {
     let account;

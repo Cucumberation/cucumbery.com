@@ -12,7 +12,7 @@ router.get('/ping', (req, res) => {
 
 router.get('/index', (req, res) => {
 
-  builds.getBuilds().then((data) => {
+  builds.getBuilds().then(data => {
     res.send({ message: APIMessage.default200, data: data });
     return;
   }).catch((error) => {
@@ -29,7 +29,7 @@ router.get('/:channel/:version', (req, res) => {
   var version = req.params.version;
   var pluginAPI = req.query.api;
 
-  builds.getBuild(channel, version, pluginAPI).then((data) => {
+  builds.getBuild(channel, version, pluginAPI).then(data => {
     res.send({ message: APIMessage.default200, data: data });
     return;
   }).catch((error) => {
@@ -91,7 +91,7 @@ router.get('/:channel/:version/download', (req, res) => {
   var version = req.params.version;
   var pluginAPI = req.query.api;
 
-  builds.getBuild(channel, version, pluginAPI).then((data) => {
+  builds.getBuild(channel, version, pluginAPI).then(data => {
     var file = data.filepath;
     if (!fs.existsSync(file)) {
       res.status(404).send({ message: APIMessage.file404 });

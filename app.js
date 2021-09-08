@@ -76,7 +76,7 @@ app.all('*', (req, res, next) => {
     return;
   }
   var referer = req.headers['referer'];
-  if (!referer || (referer && referer.startsWith("https://cucumbery.com"))) {
+  if (!referer || (referer && referer.match(/^https:\/\/(.+\.)?cucumbery\.com/i))) {
     next();
     return;
   }
@@ -90,17 +90,13 @@ app.all('*', (req, res, next) => {
 
 /* http redirect https */
 app.all('*', (req, res, next) => {
-  if (req.headers.host == host || althosts.includes(req.headers.host)) {
-    if (!req.socket.encrypted) {
-      res.redirect('https://' + host + req.originalUrl);
-      return;
-    }
-    else if (req.headers.host != host) {
-      res.redirect('https://' + host + req.originalUrl);
-      return;
+  if (host == req.headers.host || althosts.includes(req.headers.host)) {
+    if (req.secure && host == req.headers.host) {
+      next();
     }
     else {
-      next();
+      res.redirect('https://' + host + req.originalUrl);
+      return;
     }
   }
   return;
@@ -110,11 +106,9 @@ app.all('*', (req, res, next) => {
 app.all('*', (req, res, next) => {
   const acceptedOrigin = [
     "https://cucumbery.com",
+    "https://www.cucumbery.com",
     "https://wany.io",
-    "https://api.wany.io",
-    "https://storage.wany.io",
-    "https://protocol.wany.io",
-    "https://cherry.wany.io",
+    "https://api.wany.io"
   ];
   if (acceptedOrigin.includes(req.headers.origin)) {
     res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -158,8 +152,9 @@ app.use('/resource', express.static(path + '/resource'));
 // set static files
 app.use(express.static(path + '/public'));
 // set 404
-const Message = require("./routes/message.json");
-app.all('*', (req, res) => { res.status(404).send({ message: Message.default404 }); });
+app.all('*', (req, res) => { 
+  res.status(404).send("Not found");
+});
 
 
 

@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
     count = (req.query.count === 'true');
   }
 
-  accounts.getAccounts(size, page, where, and, count).then((accounts) => {
+  accounts.getAccounts(size, page, where, and, count).then(accounts => {
     res.status(200).send({ message: APIMessage.default200, data: accounts });
     return;
   }).catch((error) => {
@@ -340,7 +340,7 @@ router.patch('/:id/key', (req, res) => {
   var account = new Account(id);
   account.pull().then(() => {
     account.verify(key).then(() => {
-      account.crypt(newkey).then((hash) => {
+      account.crypt(newkey).then(hash => {
         account.pushKeyHash(hash).then(() => {
           account.pullSessions().then(() => {
             account.deleteSessions().then(() => {

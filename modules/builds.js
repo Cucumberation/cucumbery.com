@@ -7,6 +7,8 @@
  * @author Wany <sung@wany.io>
 */
 
+const config = require('../config.json');
+
 const database = require('./database.js');
 const time = require('./time.js');
 const crypto = require('crypto');
@@ -62,7 +64,7 @@ function getBuild(channel, version, pluginAPI) {
       }
     }
 
-    database.query(query).then((res) => {
+    database.query(query).then(res => {
       if (res.length == 0) {
         reject(null);
       }
@@ -105,7 +107,7 @@ module.exports.pushBuild = pushBuild;
 function checkKey(key) {
   return new Promise((resolve, reject) => {
 
-    getHash(key, clientKey.salt).then((hash) => {
+    getHash(key, clientKey.salt).then(hash => {
       if (hash === clientKey.hash) {
         resolve();
       }
@@ -132,7 +134,7 @@ function pushBuildFile(name, channel, version, req, res) {
       storage: multer.diskStorage({
 
         destination(req, file, callback) {
-          let dir = "/root/sub/cucumbery-data/cucumbery-builds/" + channel;
+          let dir = config.path + "/data/cucumbery/builds/" + channel;
           if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, 0744);
           }
@@ -180,7 +182,7 @@ function pushBuildDatabase(name, filepath, channel, version, pluginAPI) {
     query += "'" + filepath + "', ";
     query += "'" + time.datetime("YYYY-MM-DD hh:mm:ss", "now") + "');";
 
-    database.query(query).then((res) => {
+    database.query(query).then(res => {
       resolve();
     }).catch((error) => {
       reject(error);
@@ -194,7 +196,7 @@ function getBuilds() {
 
     let query = "SELECT * FROM " + table + " ORDER BY builddate DESC;";
 
-    database.query(query).then((res) => {
+    database.query(query).then(res => {
       resolve(res);
     }).catch((error) => {
       reject(error);
