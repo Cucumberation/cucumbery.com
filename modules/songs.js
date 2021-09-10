@@ -1,3 +1,5 @@
+const config = require('../config.json');
+
 const fs = require('fs');
 const multer = require('multer');
 
@@ -21,15 +23,15 @@ function pushSongFile(req, res) {
       storage: multer.diskStorage({
 
         destination(req, file, callback) {
-          let dir = "/root/cucumbery/public/songs/";
+          let dir = config.path + '/public/songs/';
           req.w = new Object();
           req.w.dir = dir;
           callback(null, dir);
         },
 
         filename(req, file, callback) {
-          if (fs.existsSync(req.w.dir + "/" + file.originalname)) {
-            fs.unlinkSync(req.w.dir + "/" + file.originalname);
+          if (fs.existsSync(req.w.dir + '/' + file.originalname)) {
+            fs.unlinkSync(req.w.dir + '/' + file.originalname);
           }
           callback(null, file.originalname); 
         }

@@ -11,8 +11,6 @@ const express = require('express');
 const expressSession = require('express-session');
 const expressMySQLSession = require('express-mysql-session');
 const expressMySQLStore = expressMySQLSession(expressSession);
-const fs = require('fs');
-const tls = require('tls');
 const cookieParser = require('cookie-parser');
 
 const config = require('./config.json');
@@ -21,11 +19,6 @@ const config = require('./config.json');
 const app = express();
 const host = config.host;
 const path = config.path;
-const cert = tls.createSecureContext({
-  key: fs.readFileSync('/etc/letsencrypt/live/cucumbery.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/cucumbery.com/fullchain.pem'),
-  ca: fs.readFileSync('/etc/letsencrypt/live/cucumbery.com/chain.pem'),
-}).context;
 
 const accounts = require('./modules/accounts');
 const database = require('./modules/database');
@@ -67,39 +60,6 @@ app.use(sessionParser);
 app.all('*', (req, res, next) => {
   log.req(req);
   next();
-});
-
-/* redirect outside referer */
-app.all('*', (req, res, next) => {
-  if (req.headers['sec-fetch-dest'] != "document") {
-    next();
-    return;
-  }
-  var referer = req.headers['referer'];
-  if (!referer || (referer && referer.match(/^https:\/\/(.+\.)?cucumbery\.com/i))) {
-    next();
-    return;
-  }
-  else {
-    res.render("master/redirect", {
-      target: 'https://' + host + req.originalUrl
-    });
-    return;
-  }
-});
-
-/* http redirect https */
-app.all('*', (req, res, next) => {
-  if (host == req.headers.host || althosts.includes(req.headers.host)) {
-    if (req.secure && host == req.headers.host) {
-      next();
-    }
-    else {
-      res.redirect('https://' + host + req.originalUrl);
-      return;
-    }
-  }
-  return;
 });
 
 /* header */
@@ -160,7 +120,6 @@ app.all('*', (req, res) => {
 
 exports.app = app;
 exports.host = host;
-exports.cert = cert;
 
 exports.sessionStore = sessionStore;
 exports.sessionParser = sessionParser;

@@ -7,7 +7,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function getSongsList() {
-  new APIGetRequest("https://cucumbery.com/api/songs2", {}).on("success", function (res) {
+  new APIGetRequest("https://cucumbery.com/api/songs", {}).on("success", function (res) {
     document.querySelector("#form .left").innerHTML = "";
 
     var _iterator = _createForOfIteratorHelper(res.data),
@@ -33,7 +33,7 @@ function getSongsList() {
           var name = target.getAttribute("name");
           new FileGetRequest("https://cucumbery.com/api/songs/" + name, {}).on("success", function (res) {
             saveBlob(res, name);
-          }).send();
+          });
         });
         document.querySelector("#form .left").appendChild(e);
       }
@@ -42,32 +42,36 @@ function getSongsList() {
     } finally {
       _iterator.f();
     }
-  }).send();
+  });
 }
 
 document.querySelector("#input-upload").addEventListener("click", function (event) {
   var files = document.querySelector("#input-file").files;
 
-  var _iterator2 = _createForOfIteratorHelper(files),
-      _step2;
+  if (!files || files.length == 0) {
+    document.querySelector("#input-file").click();
+  } else {
+    var _iterator2 = _createForOfIteratorHelper(files),
+        _step2;
 
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var file = _step2.value;
-      var req = new FilePostRequest("https://cucumbery.com/api/songs/upload", {
-        file: file
-      }).on("success", function (res) {
-        document.querySelector("#input-file").clear();
-        getSongsList();
-        new FloatMessage("업로드가 완료되었습니다");
-      }).on("error", function (res) {
-        new FloatMessage("업로드가 망했습니다; 왜냐하면 " + res.message, error);
-      }).send();
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var file = _step2.value;
+        new FilePostRequest("https://cucumbery.com/api/songs", {
+          file: file
+        }).on("success", function (res) {
+          document.querySelector("#input-file").clear();
+          getSongsList();
+          new FloatMessage("업로드가 완료되었습니다");
+        }).on("error", function (res) {
+          new FloatMessage("업로드가 망했습니다; 왜냐하면 " + res.message, error);
+        });
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
     }
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
   }
 });
 getSongsList();

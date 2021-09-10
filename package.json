@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "author": "",
-  "license": "ISC",
+  "author": "jho5245, Wany",
+  "scripts": {
+    "server": "node server.js",
+    "nodemon": "nodemon --watch ./ --ignore ./node_modules/ --ignore ./.gitignore --ignore ./README.md --ignore ./data/ --ignore ./public/ --ignore ./resource/ --ignore ./resource-babel/",
+    "babel": "npx babel resource-babel --watch --out-dir resource",
+    "ibabel": "npm install --save-dev @babel/core @babel/cli"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
