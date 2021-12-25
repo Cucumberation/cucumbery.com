@@ -26,15 +26,11 @@ setInterval(function () {
   var image = document.querySelector("#jhotwt");
   var r = Math.random();
   image.style.transform = "rotate3d(1, 2, -1, " + r * 360 + "deg)";
-  /*if (0 <= r && r < 0.3) {
-    // Do Nothing
-  }
-  else if (0.3 <= r && r < 0.6 ) {
-    image.style.transform = "rotateY(180deg)";
-  }
-  else if (0.6  <= r && r <= 1) {
-    image.style.transform = "rotateY(0deg)";
-  }*/
+}, Math.max(50, Math.random() * 500));
+setInterval(function () {
+  var image = document.querySelector("#jhotwt");
+  var r = Math.random();
+  image.style.transform = "rotate3d(1, 2, -1, " + r * 360 + "deg)";
 }, Math.max(50, Math.random() * 500));
 
 function moveDa() {
@@ -47,17 +43,3 @@ function moveDa() {
 }
 
 moveDa();
-setInterval(function () {
-  var image = document.querySelector("#jhotwt");
-  var r = Math.random();
-  image.style.transform = "rotate3d(1, 2, -1, " + r * 360 + "deg)";
-  /*if (0 <= r && r < 0.3) {
-    // Do Nothing
-  }
-  else if (0.3 <= r && r < 0.6 ) {
-    image.style.transform = "rotateY(180deg)";
-  }
-  else if (0.6  <= r && r <= 1) {
-    image.style.transform = "rotateY(0deg)";
-  }*/
-}, Math.max(50, Math.random() * 500));

@@ -12,7 +12,7 @@ const config = require('../config.json');
 const mysql = require('mysql');
 const log = require('./log');
 
-exports.config = config.database;
+module.exports.config = config.database;
 
 const pool = mysql.createPool({
   host: config.database.host,
@@ -66,7 +66,7 @@ const query = (query, values) => {
     }
   });
 }
-exports.query = query;
+module.exports.query = query;
 
 /**
  * @desc Encode string (HTML escape)
@@ -77,7 +77,7 @@ function encode(string) {
   try {
     string = string.replace(/\</g, '&lt;');
     string = string.replace(/\>/g, '&gt;');
-    string = string.replace(/\\\\\\/g, '&#92;');
+    string = string.replace(/\\/g, '&#92;');
     string = string.replace(/\\/g, '&#92;');
     string = string.replace(/\"/g, '&quot;');
     string = string.replace(/\'/g, '&apos;');
@@ -103,7 +103,7 @@ function decode(string) {
   try {
     string = string.replace(/&lt;/g, '<');
     string = string.replace(/&gt;/g, '>');
-    string = string.replace(/&#92;/g, '\\\\\\');
+    string = string.replace(/&#92;/g, '\\');
     string = string.replace(/&quot;/g, '\"');
     string = string.replace(/&apos;/g, '\'');
     string = string.replace(/&#61;/g, '=');
@@ -131,6 +131,6 @@ function trim(string) {
   return string;
 }
 
-exports.encode = encode;
-exports.decode = decode;
-exports.trim = trim;
+module.exports.encode = encode;
+module.exports.decode = decode;
+module.exports.trim = trim;

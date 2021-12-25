@@ -1,0 +1,12 @@
+[Unit]
+Description=wanyne
+After=tmux.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+User=root
+ExecStart=bash /root/com.cucumbery/service.sh
+
+[Install]
+WantedBy=multi-user.target

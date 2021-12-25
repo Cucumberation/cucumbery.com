@@ -16,6 +16,8 @@ router.use('/builds', require('./api-builds'));
 
 router.use('/songs', require('./api-songs'));
 
+router.use('/resourcepack', require('./api-resourcepack'));
+
 router.all('*', (req, res) => {
   res.status(404).send({ message: APIMessage.default404 });
 });

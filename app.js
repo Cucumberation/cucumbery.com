@@ -5,6 +5,8 @@
  * 
  * @summary cucumbery plugin website
  * @author Wany <sung@wany.io>
+ * 
+ * NoClassDefFoundError
 */
 
 const express = require('express');
@@ -113,7 +115,7 @@ app.use('/resource', express.static(path + '/resource'));
 app.use(express.static(path + '/public'));
 // set 404
 app.all('*', (req, res) => { 
-  res.status(404).send("Not found");
+  res.status(404).render('master/error/404');
 });
 
 
