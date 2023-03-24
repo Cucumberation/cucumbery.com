@@ -1,4 +1,4 @@
-name: Checkout and deploy
+name: Checkout and deploy_
 on: push
 jobs:
   checkout:
