@@ -79,7 +79,7 @@ app.use((req, res, next) => {
       ? data.title
       : undefined;
     if (data.meta.og.title) {
-      let titlematch = data.meta.og.title.match(/^(.*) - ([^-]*)$/);
+      let titlematch = data.meta.og.title.match(/^(.*) | ([^|]*)$/);
       if (titlematch) {
         data.meta.og.sitename = titlematch[2];
         data.meta.og.title = titlematch[1];
@@ -100,17 +100,17 @@ app.use((req, res, next) => {
   };
   res.error403 = () => {
     res.ren(403, 'error/403', {
-      title: '403 - 큐컴버리',
+      title: '403 | 큐컴버리',
     });
   };
   res.error404 = () => {
     res.ren(404, 'error/404', {
-      title: '404 - 큐컴버리',
+      title: '404 | 큐컴버리',
     });
   };
   res.error500 = () => {
     res.ren(500, 'error/500', {
-      title: '500 - 큐컴버리',
+      title: '500 | 큐컴버리',
     });
   };
   next();

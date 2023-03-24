@@ -13,4 +13,7 @@ router.get('/ping', (req, res) => {
   res.send('pong!');
 });
 
+import apiRouter from './api/api-root.mjs';
+router.use('/api', apiRouter);
+
 export default router;
