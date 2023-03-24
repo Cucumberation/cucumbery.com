@@ -23,22 +23,9 @@ jobs:
       - run: npm cache verify
       - run: npm ci
 
-  checkout_config:
-    name: 'Checkout config'
-    needs: [checkout]
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@master
-        with:
-          ref: 'main'
-          repository: wnynya/Wanyne-config
-          token: ${{ secrets.CONFIG_TOKEN }}
-          path: './config'
-          clean: false
-
   deploy:
     name: 'Deploy'
-    needs: [checkout, install_dependancy, checkout_config]
+    needs: [checkout, install_dependancy]
     runs-on: self-hosted
     steps:
       - run: ./start.sh
