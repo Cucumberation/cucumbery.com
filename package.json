@@ -1,32 +1,27 @@
 {
-  "name": "com.cucumbery",
+  "name": "cucumbery-web",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "author": "jho5245, Wany",
+  "author": "jho5245 <jho5245@gmail.com> (https://cucumbery.com), Wany <sung@wany.io> (https://wany.io)",
+  "main": "src/app.mjs",
   "scripts": {
-    "server": "node server.js",
-    "nodemon": "nodemon --watch ./ --ignore ./node_modules/ --ignore ./.gitignore --ignore ./README.md --ignore ./data/ --ignore ./public/ --ignore ./resource/ --ignore ./resource-babel/",
-    "babel": "npx babel resource-babel --watch --out-dir resource",
-    "ibabel": "npm install --save-dev @babel/core @babel/cli"
+    "start": "node src/app.mjs -p 52080",
+    "dev": "nodemon src/app.mjs -p 52080 -dev"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.5",
-    "express": "^4.17.1",
-    "express-mysql-session": "^2.1.6",
-    "express-session": "^1.17.1",
-    "multer": "^1.4.2",
-    "mysql": "^2.18.1",
+    "@wnynya/express-middlewares": "^1.2.12",
+    "@wnynya/logger": "^0.1.3",
+    "@wnynya/request": "^0.9.0",
+    "express": "^4.18.2",
     "pug": "^3.0.2"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.14.8",
-    "@babel/preset-env": "^7.14.9"
+  "nodemonConfig": {
+    "watch": [
+      "./config",
+      "./src/**/*"
+    ],
+    "ignore": [
+      "./src/public"
+    ],
+    "ext": "js,mjs,json,pug"
   }
 }

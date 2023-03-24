@@ -1,0 +1,30 @@
+#error-header {
+  font-family: var(--comicsans);
+  padding: 6rem 0;
+  text-align: center;
+}
+#error-header .da {
+  padding-top: 60px;
+  display: block;
+  position: relative;
+}
+#error-header .da span {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+#error-header span {
+  font-weight: 400;
+  font-size: 18pt;
+}
+#error-header span.big {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 60pt;
+  padding-bottom: 60px;
+}
+
+#error-jhotwt {
+  transition: transform 0.2s ease-in-out;
+}

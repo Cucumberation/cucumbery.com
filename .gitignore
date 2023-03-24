@@ -1,4 +1,6 @@
 /node_modules
+/logs
 /data
-/config.json
-/public/temp
+/src/public/temp
+/config
+/deprecated

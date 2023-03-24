@@ -1,0 +1,59 @@
+#root-header {
+  padding: 6rem 0;
+  text-align: center;
+}
+#root-header .da {
+  padding-top: 60px;
+  display: block;
+  position: relative;
+}
+#root-header .da span {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+#root-header span {
+  font-weight: 400;
+  font-size: 18pt;
+}
+#root-header span.big {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 60pt;
+  padding-bottom: 60px;
+}
+
+#root-jhotwt {
+  transition: transform 0.2s ease-in-out;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul > li {
+  margin: 0;
+  max-width: 600px;
+}
+ul > li > a {
+  color: var(--fg);
+  text-decoration: none;
+  cursor: default;
+}
+
+#root-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 18rem;
+}
+#root-description span img {
+  display: inline;
+  width: 17.5px;
+  height: 17.5px;
+  padding-top: 2.5px;
+}
+#root-description ul > li {
+  margin: 0 3rem;
+}

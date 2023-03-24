@@ -1,0 +1,13 @@
+doctype html
+html(lang='ko')
+
+  include /views/elements/head
+
+  body
+
+    main
+
+      include /views/pages/routes
+
+    if (elements.includes('footer'))
+      include /views/elements/footer
