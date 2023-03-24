@@ -1,2 +1,3 @@
-# cucumbery.com
-#### Cucumbery plugin website
+# 큐컴버리 홈페이지
+
+큐컴버리 플러그인 홈페이지 (이다)
