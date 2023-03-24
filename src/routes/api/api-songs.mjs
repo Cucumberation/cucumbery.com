@@ -11,6 +11,8 @@ const __dirname = path.dirname(__filename);
 
 const dir = path.resolve(__dirname, '../../public/songs');
 
+import contentDisposition from 'content-disposition';
+
 router.get('/', (req, res) => {
   fs.readdir(dir, (error, files) => {
     if (error) {
@@ -44,7 +46,10 @@ router.get('/:name*', (req, res) => {
     return;
   }
 
-  res.setHeader('Content-disposition', `attachment; filename="${name}"`);
+  res.setHeader(
+    'Content-disposition',
+    `attachment; filename="${contentDisposition(name)}"`
+  );
   res.setHeader('Content-Transfer-Encoding', 'binary');
   res.setHeader('Content-type', 'application/octet-stream');
 
