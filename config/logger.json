@@ -1,0 +1,15 @@
+{
+  "log": {
+    "source": "cucumbery",
+    "channel": "log",
+    "ANSIColor": "\u001B[38;2;82;238;82m"
+  },
+  "req": {
+    "source": "cucumbery",
+    "channel": "req",
+    "ANSIColor": "\u001B[38;2;82;238;82m",
+    "ignoreHosts": [],
+    "ignoreAgents": [],
+    "blockChina": true
+  }
+}

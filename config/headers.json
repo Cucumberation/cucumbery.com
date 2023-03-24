@@ -1,0 +1,22 @@
+{
+  "Access-Control-Allow-Credentials": "true",
+  "Access-Control-Allow-Headers": "O, Authorization, Accept, Content-Type, Origin, X-Access-Token, X-Requested-With",
+  "Access-Control-Allow-Methods": "GET, OPTIONS",
+  "Access-Control-Allow-Origin": [
+    "https://cucumbery.com",
+    "https://lab-root.cucumbery.com",
+    "https://jho5245.com",
+    "https://wany.io",
+    "https://amuject.wany.io",
+    "https://amethy.wany.io",
+    "https://lab-root.wany.io",
+    "https://lab-amuject.wany.io",
+    "https://lab-amethy.wany.io",
+    "https://mushroom.im"
+  ],
+  "X-Frame-Options": "sameorigin",
+  "Server": "Cucumbery Server",
+  "X-Powered-By": "Cherry Bomb",
+  "X-Redirect-By": "Cherry Bomb",
+  "X-Hacker": ":)"
+}
