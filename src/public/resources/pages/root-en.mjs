@@ -5,25 +5,25 @@ import { JSONGetRequest } from 'https://wany.io/resources/modules/request.mjs';
 new (class extends LapisScript {
   load() {
     var features = [
-      '각종 아이템 따위의 설명을 추가합니다. 아이템에 외부 입력 마우스의 커서를 사용하여 다양한 설명을 보고 도움받을 수 있습니다.',
-      '게임 서버 입장 그리고 퇴장 시 출력되는 메시지를 및 알림음을 지정하여 시스템-컴퓨터의 구동 속도를 높일 수 있습니다.',
-      '게임 내 대화 혹은 서버 제어 입력자 사용 시 알림음을 출력하여 풍부한 게임 내 환경을 구현할 수 있습니다.',
-      '각종 병충해 소독 작업 기능을 제공합니다.',
-      "열쇠<span><img src='https://cucumbery.com/resources/pages/root-key.png'></span>값기반국제언어지원시스템™ 을 사용하여 다양한 언어 환경에서 정상적인 문구 출력을 지원합니다.",
-      '육면음표체 API 를 지원하여 육면음표-작업실에서 제작한 육면음표 기록을 재생할 수 있습니다. 기록의 재생은 연결된 세대에 전해집니다.',
-      "<a href='https://amuject.wany.io/the-big-green-button'>閭뚣겓壤㏂겘_ゃ걚_묆굦_</a>",
-      '훌륭한 역할극 게임의 수행 기능이 제공됩니다. 다양한 역할이 강제로 지정되어 문제를 야기할 때에는 신께 기도하십시오.',
-      '이 플러그-인 외에도 다른 관련 플러그-인과 연동하여 추가적인 기능의 활성화를 노릴 수 있습니다. 이러한 작업은 안정성을 보장하지 않습니다. 사용 가이드 및 주의사항을 1회 이상 확인하십시오.',
-      '특수한 제작 비법의 추가가 가능합니다. 제작 비법 추가는 게임-서버 접속자들에게 추가적인 경험 조합을 제공합니다.',
-      '사망 시에는 사망 사유를 어느 정도 확실하게 밝혀두는 게 좋습니다. 이 플러그-인은 부검 기능을 통해 게임-서버 접속자들의 일시적인 생명 활동 정지 및 주변 가상 생명체의 영구적인 소멸에도 대응합니다.',
-      '청소창을 단정하게 채팅할 수 있습니다. 문자들은 당신의 시야를 어지럽힙니다.',
-      '저희는 항상 큐컴버리 플러그-인을 개선하고자 하며 이를 위해 일부 정보를 수집하고자 합니다. 이 정보를 통하여 저희는 어떤 하드웨어를 지원해야 하는지와 큰 문제점들이 어디에 있는지, 그리고 활성 플레이어 수가 얼마인지를 파악할 수 있읍니다. 아래에서 수집되는 모든 정보를 보실 수 없읍니다.',
-      '사용자-정의 블록 파괴 및 잔해 처리 장치가 제공됩니다. 영원에 대한 노력은 이제서야 끝을 마주합니다.',
-      '창조적 약물 사용의 장려를 위해 추가적인 약물 접촉 기회가 제공됩니다. 당신의 시야 위에 표시됩니다. 이 기회는 다른 연합회의 플러그-인을 통해 퍼져나갈 수 있습니다.',
-      '비레거시-비지원-비API 사용을 통해 사용자 서버 구현체의 시대적 배경을 알 수 있습니다. 시대착오적인 행위는 세상을 어지럽힙니다.',
-      '게임 서버 플레이 중 가해한 경우 피해-독립체의 우울을 수치적으로 나타냅니다.',
-      '플러그-인 명령어 사용 중 발전된 단위공백-자동완성 기능을 제공합니다.',
-      '사용자 지정 호칭을 지정할 수 있습니다. 지정된 사용자 지정 지정 호칭 지정은 무수한 지정 가능 영역에서 사용됩니다.',
+      'various item such explain Add. to the item Out input of the mouse cursor using various explain report get help number there is.',
+      'game server Entrance and Exit city output message and beep by designation system - computer Driving speed up raise number there is.',
+      'game my conversation or server control typer use city beep by outputting abundant game my the environment to implement number there is.',
+      'various disease Disinfection work function provide.',
+      "key<span><img src='https://cucumbery.com/resources/pages/root-key.png'></span>Value-Based International Language Support System™ second using various language in the environment normal Phrases output support.",
+      'six-sided note API cast support Six-sided notes - in the studio produced six-sided note record play number there is. of record play is connected in generations it is transmitted.',
+      "<a href='https://amuject.wany.io/the-big-green-button'>Opening</a>",
+      'excellent role play of the game Perform function provided. various the role forcibly designated problem to cause when to god Pray.',
+      'this plug-in besides different related plug-in and in conjunction with additional functional activate Noril number there is. Such work is stability not guaranteed not. use guide and notice 1 time more Check it out.',
+      "special produce secret add it's possible. produce secret add game-server to accessors additional experience combination provide.",
+      'Dead at the time Dead reason any degree Surely to reveal crab great. this plug-ins autopsy function through game-server of accessors temporary life activity stop and around email of life permanent even with extinction respond.',
+      'clean window neatly to chat number there is. the characters your sight It messes up.',
+      'We always qcombury plug-in to improve and this for part Information want to collect do. this Information through We which hardware need to support hajiwa big the problems where whether and activation player medical charge how much figure out number there is from below collected every Information to see number No.',
+      'Custom block Destruction and wreck process the device provided. in eternity About effort is now end face to face.',
+      'creative drug of use to encourage for additional drug contact have a chance provided. your eyesight above displayed. this the chance is different association meeting plug-in through to spread number there is.',
+      'non-legacy-non-support-non-API to use through user server of the embodiment era background egg number there is. anachronistic act is the world It messes up.',
+      'game server paly middle perpetrated case of the damage-entity melancholy numerically indicate.',
+      'plug-in command use middle advanced unit space-autocompletion function provide.',
+      'user appointed name to specify number there is. designated user appointed appointed designation designation is myriad appointed possible in the realm used.',
     ];
     var usedfeatures = [];
 
@@ -69,26 +69,10 @@ new (class extends LapisScript {
     ).then((res) => {
       console.log(res);
     });
-
-    document.addEventListener('keydown', onKeyDown);
   }
 
-  unload() {
-    document.removeEventListener('keydown', onKeyDown);
-  }
+  unload() {}
 })();
-
-let stack = [];
-function onKeyDown(event) {
-  const key = event.key;
-  stack.push(key);
-  while (stack.length > 4) {
-    stack.shift();
-  }
-  if (stack.join('') == 'sans') {
-    window.location.href = '/sans';
-  }
-}
 
 class Vector {
   constructor(x, y) {
