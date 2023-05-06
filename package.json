@@ -1,7 +1,7 @@
 {
   "name": "cucumbery-web",
   "version": "1.0.0",
-  "author": "jho5245 <jho5245@gmail.com> (https://cucumbery.com), Wany <sung@wany.io> (https://wany.io)",
+  "author": "jho5245 <jho5245@gmail.com> (https://cucumbery.com), Wany <sung@wany.io> (https://wany.io) ",
   "main": "src/app.mjs",
   "scripts": {
     "start": "node src/app.mjs -p 52080",
