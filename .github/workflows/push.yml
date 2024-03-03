@@ -30,4 +30,4 @@ jobs:
     needs: [checkout, install_dependancy]
     runs-on: [self-hosted, sangsu-102]
     steps:
-      - run: ./start.sh
+      - run: RUNNER_TRACKING_ID="" && ./start.sh
