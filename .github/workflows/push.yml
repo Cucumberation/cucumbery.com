@@ -2,13 +2,10 @@ name: Checkout and deploy
 
 on: push
 
-env:
-  RUNS_ON: [self-hosted, sangsu-102]
-
 jobs:
   checkout:
     name: 'Checkout'
-    runs-on: ${{ env.RUNS_ON }}
+    runs-on: [self-hosted, sangsu-102]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -17,7 +14,7 @@ jobs:
   install_dependancy:
     name: 'Install dependancy'
     needs: [checkout]
-    runs-on: ${{ env.RUNS_ON }}
+    runs-on: [self-hosted, sangsu-102]
     steps:
       - uses: actions/cache@v4
         with:
@@ -31,6 +28,6 @@ jobs:
   deploy:
     name: 'Deploy'
     needs: [checkout, install_dependancy]
-    runs-on: ${{ env.RUNS_ON }}
+    runs-on: [self-hosted, sangsu-102]
     steps:
       - run: ./start.sh
