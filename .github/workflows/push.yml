@@ -1,18 +1,23 @@
 name: Checkout and deploy
+
 on: push
+
+env:
+  RUNS_ON: [self-hosted, sangsu-102]
+
 jobs:
   checkout:
     name: 'Checkout'
-    runs-on: self-hosted
+    runs-on: $RUNS_ON
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
         with:
           ref: 'main'
 
   install_dependancy:
     name: 'Install dependancy'
     needs: [checkout]
-    runs-on: [self-hosted, sangsu-102]
+    runs-on: $RUNS_ON
     steps:
       - uses: actions/cache@v4
         with:
@@ -22,12 +27,10 @@ jobs:
             ${{ runner.os }}-node-modules-
       - run: npm cache verify
       - run: npm ci
-        continue-on-error: true
-      - run: npm i
 
   deploy:
     name: 'Deploy'
     needs: [checkout, install_dependancy]
-    runs-on: self-hosted
+    runs-on: $RUNS_ON
     steps:
       - run: ./start.sh
