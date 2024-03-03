@@ -1,11 +1,14 @@
 {
-  "name": "cucumbery-web",
+  "name": "cucumbery.com",
   "version": "1.0.0",
-  "author": "jho5245 <jho5245@gmail.com> (https://cucumbery.com), Wany <sung@wany.io> (https://wany.io) ",
+  "contributors": [
+    "jho5245 <jho5245@gmail.com> (https://cucumbery.com)",
+    "Wany <sung@wanyne.com> (https://wanyne.com)"
+  ],
   "main": "src/app.mjs",
   "scripts": {
     "start": "node src/app.mjs -p 52080",
-    "dev": "nodemon src/app.mjs -p 52080 -dev"
+    "dev": "nodemon src/app.mjs -p 53080 -dev"
   },
   "dependencies": {
     "@wnynya/express-middlewares": "^1.2.12",
@@ -23,6 +26,6 @@
     "ignore": [
       "./src/public"
     ],
-    "ext": "js,mjs,json,pug"
+    "ext": "js,mjs,json,html"
   }
 }

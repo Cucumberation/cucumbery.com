@@ -1,4 +1,4 @@
-session=github-actions-cucumbery-web
+session=github-actions_cucumbery.com
 tmux has-session -t $session || tmux new-session -d -s $session
 tmux send-keys -t $session C-c
 tmux send-keys -t $session "bash" C-m
