@@ -22,6 +22,8 @@ jobs:
             ${{ runner.os }}-node-modules-
       - run: npm cache verify
       - run: npm ci
+        continue-on-error: true
+      - run: npm i
 
   deploy:
     name: 'Deploy'
