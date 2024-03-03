@@ -8,7 +8,7 @@ env:
 jobs:
   checkout:
     name: 'Checkout'
-    runs-on: ${{ RUNS_ON }}
+    runs-on: ${{ env.RUNS_ON }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -17,7 +17,7 @@ jobs:
   install_dependancy:
     name: 'Install dependancy'
     needs: [checkout]
-    runs-on: $RUNS_ON
+    runs-on: ${{ env.RUNS_ON }}
     steps:
       - uses: actions/cache@v4
         with:
@@ -31,6 +31,6 @@ jobs:
   deploy:
     name: 'Deploy'
     needs: [checkout, install_dependancy]
-    runs-on: $RUNS_ON
+    runs-on: ${{ env.RUNS_ON }}
     steps:
       - run: ./start.sh
