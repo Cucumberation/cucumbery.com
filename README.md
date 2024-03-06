@@ -1,3 +1,3 @@
-# 큐컴버리 홈페이지
+# cucumbery.com
 
-큐컴버리 플러그인 홈페이지 (이다)
+This is the repository of the [cucumbery.com](https://github.com/jho5245/Cucumbery).
