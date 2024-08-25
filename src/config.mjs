@@ -38,7 +38,7 @@ const dev = process.argv.includes('-dev');
 if (config.logger) {
   config.logger.dir = dev
     ? './logs'
-    : '/home/wnynya/data/logs/' + process.env.npm_package_name;
+    : '/data/logs/' + process.env.npm_package_name;
   config.logger.log.dir = config.logger.dir;
   config.logger.req.dir = config.logger.dir;
 }
